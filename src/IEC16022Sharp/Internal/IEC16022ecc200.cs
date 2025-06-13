@@ -583,6 +583,12 @@ namespace IEC16022Sharp
                                 t[tp++] = (byte)( ( ( s[sp] - '0' ) * 10 ) + s[sp + 1] - '0' + 130 );
                                 sp += 2;
                             }
+                            else if (s[sp] == 232 /* FNC1 */ || s[sp] == 233 /* Structured Append */ || s[sp] == 234 /* Reader Programming */
+                                || s[sp] == 236 /* 05 Macro */ || s[sp] == 237 /* 06 Macro */)
+                            {
+                                // Already a raw codepoint
+                                t[tp++] = s[sp++];
+                            }
                             else if (s[sp] > 127)
                             {
                                 t[tp++] = 235;
